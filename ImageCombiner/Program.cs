@@ -7,11 +7,12 @@ namespace MyApp // Note: actual namespace depends on the project name.
     internal class Program
     {
         private const int RowSize = 10;
-        private const int NumRows = 7;
+        private const int NumRows = 5;
 
-        private static List<string> folders = new List<string> { "Skills" };
-        private const string parentFolder = "c:\\Games\\PacRim Skirmish";
-        
+        private static List<string> folders = new List<string> { "Cards" };
+        private const string parentFolder = "c:\\Games\\SnoopCereal";
+        private const int margin_x = 90;
+        private const int margin_y = 90;
 
         static void Main(string[] args)
         {
@@ -45,8 +46,8 @@ namespace MyApp // Note: actual namespace depends on the project name.
         static void Combine(List<string> fileNames, string outputFilename)
         {
             var image = Image.FromFile(fileNames[0]);
-            var width = image.Width;
-            var height = image.Height;
+            var width = image.Width - (2 * margin_x);
+            var height = image.Height - (2 * margin_y);
 
             var rowCount = (int)Math.Ceiling((double)fileNames.Count / RowSize);
 
@@ -62,7 +63,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
                         foreach (var sourceImagePath in fileNames.Skip(RowSize*rowNum).Take(RowSize))
                         {
                             var sourceImage = Image.FromFile(sourceImagePath);
-                            canvas.DrawImage(sourceImage, new Rectangle(hOffset, rowNum * height, width, height), new Rectangle(0, 0, sourceImage.Width, sourceImage.Height), GraphicsUnit.Pixel);
+                            canvas.DrawImage(sourceImage, new Rectangle(hOffset, rowNum * height, width, height), new Rectangle(margin_x, margin_y, sourceImage.Width - (2* margin_x), sourceImage.Height - (2*margin_y)), GraphicsUnit.Pixel);
                             hOffset += width;
                         }
                     }
