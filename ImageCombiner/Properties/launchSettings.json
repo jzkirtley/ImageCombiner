@@ -2,7 +2,7 @@
   "profiles": {
     "ImageCombiner": {
       "commandName": "Project",
-      "commandLineArgs": "c:\\games\\overlords\\MikeFighterCards c:\\games\\overlords\\MikeFighterCards.jpg"
+      "commandLineArgs": "-RowSize 8 -MaxRows 5 MarketCards"
     }
   }
 }
